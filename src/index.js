@@ -1,26 +1,40 @@
-import { ColorModeScript } from '@chakra-ui/react';
-import React, { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import * as serviceWorker from './serviceWorker';
+import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+// import { AuthProvider } from './contexts/AuthContext';
+import React from 'react';
 
-const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container);
-
-root.render(
-  <StrictMode>
-    <ColorModeScript />
-    <App />
-  </StrictMode>
+ReactDOM.render(
+  <React.StrictMode>
+    <ChakraProvider>
+      <ColorModeProvider
+        options={{
+          useSystemColorMode: true,
+        }}
+      >
+        <Router>
+          <App />
+        </Router>
+      </ColorModeProvider>
+    </ChakraProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://cra.link/PWA
-serviceWorker.unregister();
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// // For Testing Purposes Only:
+// import { DateAndTimePicker } from "./components/DateAndTimePicker";
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <ChakraProvider>
+//       <ColorModeProvider
+//         options={{
+//           useSystemColorMode: true,
+//         }}
+//       >
+//         <DateAndTimePicker  />
+//       </ColorModeProvider>
+//     </ChakraProvider>
+//   </React.StrictMode>,
+//   document.getElementById("root")
+// );
