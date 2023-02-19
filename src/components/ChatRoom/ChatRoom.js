@@ -142,6 +142,9 @@ const ChatRoom = props => {
   };
 
   const onSendMessage = e => {
+    if (message.includes('maybe')) {
+      props.state(true);
+    }
     e.preventDefault();
     socketRef.current.emit('is_typing', false, is_listener);
     if (message !== '') {

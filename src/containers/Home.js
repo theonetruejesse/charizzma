@@ -9,8 +9,10 @@ import {
   AspectRatio,
 } from '@chakra-ui/react';
 import ChatRoom from '../components/ChatRoom/ChatRoom';
+import Analytics from '../components/Analytics';
 
 const Home = props => {
+  const [maybe, setMaybe] = useState(false);
   return (
     <Wrapper variant="regular">
       <Box h="85vh">
@@ -19,14 +21,16 @@ const Home = props => {
         </Center>
         <Flex h="100%">
           <Stack bg="red" w="50%" align="center">
-            <ChatRoom />
+            <ChatRoom state={setMaybe} />
           </Stack>
           <Stack w="50%" align="center">
             <AspectRatio w="95%" ratio={1.5}>
-              <iframe title="naruto" src={props.video} allowFullScreen />
+              <iframe title="video" src={props.video} allowFullScreen />
             </AspectRatio>
             <Box w="100%" h="100%" align="center">
-              <Box bg="#4c3daf" h="90%" w="95%" mt="15px"></Box>
+              <Box bg="#4c3daf" h="90%" w="95%" mt="15px">
+                <Analytics maybe={maybe} />
+              </Box>
             </Box>
           </Stack>
         </Flex>
